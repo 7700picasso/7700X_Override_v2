@@ -133,7 +133,7 @@ void gyroTurningP(double target){
 
 
 
-int selectedAuton = 2; // 0 = None, 1 = Red 1, 2 = Red 1.5, 2 = Red , 3 = Blue 1, 4 = Blue 2, 5 = Do Nothing
+int selectedAuton = 4; // 0 = None, 1 = Red 1, 2 = Red 1.5, 2 = Red , 3 = Blue 1, 4 = Blue 2, 5 = Do Nothing
 
 // ============================================================================
 // 2. AUTON SELECTOR FUNCTIONS
@@ -471,11 +471,26 @@ void autonomous(void) {
 
 
     case 4:
-      // Code for BLUE 1
+      // Skills Version #2
+      CL.spin(reverse, 100, pct );
+      liftArmUp(60, 600);
+      liftArmDown(80,600);
+      wait(300, msec);
+      liftArmUp(60, 800);
+      wait(200,msec);
+      inchDriveP(13);
+      wait(300,msec);
+      liftArmDown(100,900);
+      CL.spin(forward, 100, pct );
+      // inchDriveP(3);
+    
+
+
       break;
 
     case 5:
-CL.setPosition(0,degrees);
+      //skills version #1
+      CL.setPosition(0,degrees);
       CL.spinToPosition(-150,degrees,false);
       inchDriveP(1);
       liftArmUp(60, 900); 
