@@ -480,10 +480,19 @@ void autonomous(void) {
       wait(200,msec);
       inchDriveP(13);
       wait(300,msec);
-      liftArmDown(100,900);
+      liftArmDown(100,1500);
       CL.spin(forward, 100, pct );
-      // inchDriveP(3);
-    
+      inchDriveP(-8);
+      gyroTurningP(-40);
+      inchDriveP(20);
+      gyroTurningP(18);
+      inchDriveP(10);
+      CL.spin(reverse, 100, pct );
+      wait(300,msec);
+      gyroTurningP(130);
+      liftArmUp(60, 600);
+      inchDriveP(20);
+      liftArmDown(80,600);
 
 
       break;
