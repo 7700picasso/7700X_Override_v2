@@ -72,11 +72,10 @@ void closeClaw(){
 // }
 
 void liftArmUp(float speed, int wt){ 
-	LARM.spin(fwd, speed, pct);
+	  LARM.spin(fwd, speed, pct);
     RARM.spin(fwd, speed, pct);
     wait(wt, msec);
-    LARM.stop(hold);
-    RARM.stop(hold);
+    
 
 }
 
@@ -84,8 +83,12 @@ void liftArmDown(float speed, int wt){
 	LARM.spin(reverse, speed, percent);
 	RARM.spin(reverse, speed, percent);
 	wait(wt, msec);
-    LARM.stop(brake);
-    RARM.stop(brake);
+ 
+}
+
+void stopLift(){
+  LARM.stop(brake); 
+  RARM.stop(brake); 
 }
 
 void toggleToggle(){
@@ -473,26 +476,31 @@ void autonomous(void) {
     case 4:
       // Skills Version #2
       CL.spin(reverse, 100, pct );
-      liftArmUp(60, 600);
-      liftArmDown(80,600);
-      wait(300, msec);
-      liftArmUp(60, 800);
-      wait(200,msec);
+      liftArmUp(100, 400);
+       stopLift(); 
+      liftArmDown(50,600);
+     stopLift(); 
+      liftArmUp(100, 800);
+      stopLift(); 
       inchDriveP(13);
       wait(300,msec);
       liftArmDown(100,1500);
       CL.spin(forward, 100, pct );
       inchDriveP(-8);
       gyroTurningP(-40);
-      inchDriveP(20);
+      inchDriveP(18);
       gyroTurningP(18);
-      inchDriveP(10);
+      inchDriveP(11);
       CL.spin(reverse, 100, pct );
       wait(300,msec);
       gyroTurningP(130);
-      liftArmUp(60, 600);
-      inchDriveP(20);
-      liftArmDown(80,600);
+      liftArmUp(100, 600);
+      inchDriveP(8);
+      liftArmDown(100,800);
+       wait(300,msec);
+      CL.spin(forward, 100, pct );
+      
+
 
 
       break;
@@ -527,6 +535,8 @@ void autonomous(void) {
        break;
 
     case 6:
+    liftArmUp(50, 1000); 
+    liftArmDown(50, 2000); 
     default:
       // Do nothing / Safe mode
       break;
