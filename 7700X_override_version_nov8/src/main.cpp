@@ -25,7 +25,7 @@ motor RB = motor(PORT12, ratio6_1, false);
 motor LARM = motor(PORT6, ratio18_1, true);
 motor RARM = motor(PORT10, ratio18_1, false);
 motor CL = motor(PORT1, true);
-inertial gyroSensor = inertial(PORT15);
+inertial gyroSensor = inertial(PORT5);
 digital_out Toggle = digital_out(Brain.ThreeWirePort.A);
 // int lspeed = 0;
 // int rspeed = 0;
@@ -83,6 +83,8 @@ void liftArmDown(float speed, int wt){
 	LARM.spin(reverse, speed, percent);
 	RARM.spin(reverse, speed, percent);
 	wait(wt, msec);
+  LARM.stop(hold); 
+  RARM.stop(hold); 
  
 }
 
@@ -475,29 +477,38 @@ void autonomous(void) {
 
     case 4:
       // Skills Version #2
+      //toggle
       CL.spin(reverse, 100, pct );
       liftArmUp(100, 400);
        stopLift(); 
       liftArmDown(50,600);
-     stopLift(); 
+      stopLift(); 
       liftArmUp(100, 800);
       stopLift(); 
+      liftArmDown(50,950);
+      stopLift(); 
+      //go to alliance goal
       inchDriveP(13);
       wait(300,msec);
-      liftArmDown(100,1500);
+      liftArmDown(20,550);
       CL.spin(forward, 100, pct );
-      inchDriveP(-8);
+      wait(150,msec);
+
+      //get pin and cup
+      inchDriveP(-10);
       gyroTurningP(-40);
-      inchDriveP(18);
-      gyroTurningP(18);
+      inchDriveP(20);
+      gyroTurningP(30);
       inchDriveP(11);
       CL.spin(reverse, 100, pct );
       wait(300,msec);
+
+      //score on goal
       gyroTurningP(130);
       liftArmUp(100, 600);
       inchDriveP(8);
       liftArmDown(100,800);
-       wait(300,msec);
+      wait(300,msec);
       CL.spin(forward, 100, pct );
       
 
