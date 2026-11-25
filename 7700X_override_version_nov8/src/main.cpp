@@ -478,7 +478,7 @@ void autonomous(void) {
     case 4:
       // Skills Version #2
       //toggle
-      CL.spin(reverse, 100, pct );
+      CL.spinToPosition(-250, degrees);
       liftArmUp(100, 400);
        stopLift(); 
       liftArmDown(50,600);
@@ -491,7 +491,7 @@ void autonomous(void) {
       inchDriveP(13);
       wait(300,msec);
       liftArmDown(20,550);
-      CL.spin(forward, 100, pct );
+      CL.spinToPosition(250, degrees);
       wait(150,msec);
 
       //get pin and cup
@@ -500,7 +500,7 @@ void autonomous(void) {
       inchDriveP(20);
       gyroTurningP(30);
       inchDriveP(11);
-      CL.spin(reverse, 100, pct );
+      CL.spinToPosition(-250, degrees);
       wait(300,msec);
 
       //score on goal
@@ -509,7 +509,7 @@ void autonomous(void) {
       inchDriveP(8);
       liftArmDown(100,800);
       wait(300,msec);
-      CL.spin(forward, 100, pct );
+      CL.spinToPosition(250, degrees);
       
 
 
